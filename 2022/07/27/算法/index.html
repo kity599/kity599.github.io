@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>algorithm | Hexo</title>
 
 
 
@@ -40,6 +40,45 @@
 
     
     
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
         
     
 
@@ -196,7 +235,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">algorithm</h1>
             
                 <div class="post-meta">
                     
@@ -205,28 +244,51 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 27, 2023&nbsp;&nbsp;0:19:06</a>
+                        Date: <a href="#">July 27, 2022&nbsp;&nbsp;12:41:08</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h1 id="二分查找-704"><a href="#二分查找-704" class="headerlink" title="二分查找 704"></a>二分查找 704</h1><p>right表示的是数组里最后一个元素的下标，假设数组的长度为10，左闭右开中right算出来是10，正好能取到9这个下标的元素</p>
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>五部曲：1.dp数组；2.初始化；3.递推公式；4.遍历顺序；5.打印检查。</p>
+<p>定义一维或二维用来做动态转移的数组 dp[]</p>
+<h2 id="斐波那契-509"><a href="#斐波那契-509" class="headerlink" title="斐波那契 509"></a>斐波那契 509</h2><p>斐波那契是从第零个数开始，所以数组下标和第n个数是对应的</p>
+<p>dp数组是从0开始的，0～n，一共n+1个数</p>
+<p>递归超时是因为 很多次n&#x3D;&#x3D;1 n&#x3D;&#x3D;2的值被重复计算了  递归时维护一个数组 发现该数组元素已经有值了，就不用去做进一步递归，这个就叫记忆化操作</p>
+<h2 id="爬楼梯-70"><a href="#爬楼梯-70" class="headerlink" title="爬楼梯 70"></a>爬楼梯 70</h2><p>拿第3阶举例，因为每次可以爬 <code>1</code> 或 <code>2</code> 个台阶，所以到3阶有两个途径可以到达，第一种是从1阶爬2个台阶到3阶，另一种是从2阶爬1个台阶到达，到达1阶有1种方法，而到达2阶有两种方法，所以到达3阶的方法中还需要包含2阶的另一种方法，总共就是3种方法，也就是1阶的所有方法加上2阶的所有方法。</p>
+<p>4阶同样的道理，途径一是从3阶爬1个台阶到达，途径二从2阶爬2个台阶到达，而途径一包含3种方法，途径二包含2种方法，所以到达第4阶一共就有3（途径一的3种方法）+2（途径二的2种方法）种方法</p>
+<img src="D:\系统默认\桌面\笔记图片\33d204bd98a7a651dcce4a48dc3f280.jpg" alt="33d204bd98a7a651dcce4a48dc3f280" style="zoom:50%;" />
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>, b = <span class="number">0</span>, c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	a = b;</span><br><span class="line">	b = c;</span><br><span class="line">	c = a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> c;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h2 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h2><p>i : 第i个物品</p>
+<p>j ：遍历到背包容量为j 时</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]</span><br><span class="line">任取0~i的物品放到容量为j的背包</span><br><span class="line"></span><br><span class="line">// weight数组的大小 就是物品个数</span><br><span class="line">for(int i = 1; i &lt; weight.size(); i++) &#123; // 遍历物品</span><br><span class="line">    for(int j = 0; j &lt;= bagweight; j++) &#123; // 遍历背包容量</span><br><span class="line">    	// 这里j &lt; weight[i]就是此时的背包放不下物品i，所以背包的最大价值就是上一个物品dp[i - 1]遍历到j时的最大价值</span><br><span class="line">        if (j &lt; weight[i]) dp[i][j] = dp[i - 1][j]; </span><br><span class="line">        else dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>以下图当遍历到物品2，遍历到背包容量为5时为例</p>
+<p>此时的物品重量为3，价值为5</p>
+<p>若不装这个物品，此时背包的价值就是前一个物品（i-1）遍历到j时的最大价值为3</p>
+<p>若装下这个物品，此时背包的容量就剩下2，剩下的2肯定不能浪费了，就找前一个我们遍历过的物品（i-1）背包容量为2时的最大价值即3，把3和物品i的价值5相加就是此时背包的最大价值8</p>
+<p>8比3大，所以选择装下物品i</p>
+<p><img src="D:\系统默认\桌面\笔记图片\笔记图片.png" alt="笔记图片"></p>
+<p><img src="C:\Users\86132\AppData\Roaming\Typora\typora-user-images\image-20230726223909783.png" alt="image-20230726223909783"></p>
+<p>为什么要从0开始，因为下图部分的代码需要用到，即当背包容量和物品重量相等时，这时j-weight[i]&#x3D;0</p>
+<p><img src="C:\Users\86132\AppData\Roaming\Typora\typora-user-images\image-20230726224910866.png" alt="image-20230726224910866"></p>
+<img src="D:\系统默认\桌面\笔记图片\01背包问题.png" alt="01背包问题"  />
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+
 
         </div>
 
@@ -241,7 +303,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://kity599.github.io/2023/07/27/hello-world/">http://kity599.github.io/2023/07/27/hello-world/</a></span>
+                        <span><a href="http://kity599.github.io/2022/07/27/%E7%AE%97%E6%B3%95/">http://kity599.github.io/2022/07/27/%E7%AE%97%E6%B3%95/</a></span>
                     </p>
                 
                 
@@ -264,6 +326,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E7%AE%97%E6%B3%95/"># 算法</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -274,10 +340,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/07/27/Test2/">Test</a>
+                <a class="prev" rel="prev" href="/2022/07/27/Test/">Test</a>
             
-            
-            <a class="next" rel="next" href="/2022/07/27/Test/">Test</a>
             
         </section>
 
