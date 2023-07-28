@@ -13,7 +13,7 @@
 
 
 
-<title>algorithm | Hexo</title>
+<title>算法 | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">algorithm</h1>
+            <h1 class="post-title">算法</h1>
             
                 <div class="post-meta">
                     
@@ -229,7 +229,7 @@
 <p>递归超时是因为 很多次n&#x3D;&#x3D;1 n&#x3D;&#x3D;2的值被重复计算了  递归时维护一个数组 发现该数组元素已经有值了，就不用去做进一步递归，这个就叫记忆化操作</p>
 <h2 id="爬楼梯-70"><a href="#爬楼梯-70" class="headerlink" title="爬楼梯 70"></a>爬楼梯 70</h2><p>拿第3阶举例，因为每次可以爬 <code>1</code> 或 <code>2</code> 个台阶，所以到3阶有两个途径可以到达，第一种是从1阶爬2个台阶到3阶，另一种是从2阶爬1个台阶到达，到达1阶有1种方法，而到达2阶有两种方法，所以到达3阶的方法中还需要包含2阶的另一种方法，总共就是3种方法，也就是1阶的所有方法加上2阶的所有方法。</p>
 <p>4阶同样的道理，途径一是从3阶爬1个台阶到达，途径二从2阶爬2个台阶到达，而途径一包含3种方法，途径二包含2种方法，所以到达第4阶一共就有3（途径一的3种方法）+2（途径二的2种方法）种方法</p>
-<img src="/2022/07/27/%E7%AE%97%E6%B3%95/%E7%88%AC%E6%A5%BC%E6%A2%AF.jpg" class>
+
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>, b = <span class="number">0</span>, c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	a = b;</span><br><span class="line">	b = c;</span><br><span class="line">	c = a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> c;</span><br></pre></td></tr></table></figure>
 
@@ -242,7 +242,7 @@
 <p>若不装这个物品，此时背包的价值就是前一个物品（i-1）遍历到j时的最大价值为3</p>
 <p>若装下这个物品，此时背包的容量就剩下2，剩下的2肯定不能浪费了，就找前一个我们遍历过的物品（i-1）背包容量为2时的最大价值即3，把3和物品i的价值5相加就是此时背包的最大价值8</p>
 <p>8比3大，所以选择装下物品i</p>
-<img src="/2022/07/27/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87.png" class>
+
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建dp数组</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">goods</span> <span class="operator">=</span> weight.length;  <span class="comment">// 获取物品的数量</span></span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[goods][bagSize + <span class="number">1</span>]; <span class="comment">//bagSize + 1是因为背包容量j是从0开始遍历的</span></span><br></pre></td></tr></table></figure>
 
@@ -253,7 +253,7 @@
 
 
 
-<img src="/2022/07/27/%E7%AE%97%E6%B3%95/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.png" class>
+
 
 
 
@@ -271,7 +271,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://kity599.github.io/2022/07/27/%E7%AE%97%E6%B3%95/">http://kity599.github.io/2022/07/27/%E7%AE%97%E6%B3%95/</a></span>
+                        <span><a href="http://kity599.github.io/2022/07/27/algorithm/">http://kity599.github.io/2022/07/27/algorithm/</a></span>
                     </p>
                 
                 
@@ -308,7 +308,7 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/07/28/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"></a>
+                <a class="prev" rel="prev" href="/2022/07/27/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
             
             
         </section>
