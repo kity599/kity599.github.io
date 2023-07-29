@@ -222,41 +222,129 @@
 
         <div class="post-content">
             <h1 id="二分查找-704"><a href="#二分查找-704" class="headerlink" title="二分查找 704"></a>二分查找 704</h1><p>right表示的是数组里最后一个元素的下标，假设数组的长度为10，左闭右开中right算出来是10，正好能取到9这个下标的元素</p>
-<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>五部曲：1.dp数组；2.初始化；3.递推公式；4.遍历顺序；5.打印检查。</p>
-<p>定义一维或二维用来做动态转移的数组 dp[]</p>
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>什么是动态规划</p>
+<p>动态规划（Dynamic Programming，简称DP）是一种通过拆分问题为子问题并且反复利用子问题解来求解复杂问题的算法思想。</p>
+<p>动态规划的核心思想是将原问题分解为多个重叠子问题，通过解决子问题来构建原问题的解。为了避免对同一个子问题的重复计算，在求解过程中将子问题的解保存起来，以便后续使用。这种自底向上的方法使得每个子问题只需要计算一次，避免了重复计算，从而提高了算法的效率。</p>
+<p>具体而言，动态规划包括以下步骤：</p>
+<ol>
+<li>定义状态：明确问题所涉及的变量和参数，并定义状态以描述问题的性质。</li>
+<li>定义状态转移方程：找到子问题之间的递推关系，将问题表示为子问题的解的函数。</li>
+<li>初始化：确定边界条件，解决最简单的子问题。</li>
+<li>递推求解：从最简单的子问题开始，依次求解更复杂的子问题，直到求解出原问题的解。</li>
+</ol>
+<p>动态规划通常用于求解最优化问题，比如最短路径问题、背包问题、字符串编辑距离等。它的关键在于将问题分解为子问题，并将子问题的解存储起来以供后续使用，避免了重复计算，从而提高了算法的效率。</p>
+<blockquote>
+<p>动规是由前一个状态推导出来的，而贪心是局部直接选最优的</p>
+</blockquote>
+<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式</li>
+<li>dp数组如何初始化</li>
+<li>确定遍历顺序</li>
+<li>推导(打印)dp数组，用于排查错误</li>
+</ol>
+<blockquote>
+<ol>
+<li><p>数组 dp[]：定义一维或二维用来做动态转移的</p>
+</li>
+<li><p>先确定递推公式，再考虑初始化，<strong>因为一些情况是递推公式决定了dp数组要如何初始化！</strong></p>
+<p>例如01背包问题二维数组的解法，第一行之外的数据需要由上面的数据和左上的数据决定，这样第一行的数据也就是物品0的数据就不能随便初始化</p>
+</li>
+</ol>
+</blockquote>
 <h2 id="斐波那契-509"><a href="#斐波那契-509" class="headerlink" title="斐波那契 509"></a>斐波那契 509</h2><p>斐波那契是从第零个数开始，所以数组下标和第n个数是对应的</p>
 <p>dp数组是从0开始的，0～n，一共n+1个数</p>
 <p>递归超时是因为 很多次n&#x3D;&#x3D;1 n&#x3D;&#x3D;2的值被重复计算了  递归时维护一个数组 发现该数组元素已经有值了，就不用去做进一步递归，这个就叫记忆化操作</p>
 <h2 id="爬楼梯-70"><a href="#爬楼梯-70" class="headerlink" title="爬楼梯 70"></a>爬楼梯 70</h2><p>拿第3阶举例，因为每次可以爬 <code>1</code> 或 <code>2</code> 个台阶，所以到3阶有两个途径可以到达，第一种是从1阶爬2个台阶到3阶，另一种是从2阶爬1个台阶到达，到达1阶有1种方法，而到达2阶有两种方法，所以到达3阶的方法中还需要包含2阶的另一种方法，总共就是3种方法，也就是1阶的所有方法加上2阶的所有方法。</p>
 <p>4阶同样的道理，途径一是从3阶爬1个台阶到达，途径二从2阶爬2个台阶到达，而途径一包含3种方法，途径二包含2种方法，所以到达第4阶一共就有3（途径一的3种方法）+2（途径二的2种方法）种方法</p>
-<img src="/2022/07/27/algorithm/%E7%88%AC%E6%A5%BC%E6%A2%AF.jpg" class>
+
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>, b = <span class="number">0</span>, c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">	a = b;</span><br><span class="line">	b = c;</span><br><span class="line">	c = a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> c;</span><br></pre></td></tr></table></figure>
 
-<h2 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h2><p>i : 第i个物品</p>
-<p>j ：遍历到背包容量为j 时</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]</span><br><span class="line">任取0~i的物品放到容量为j的背包</span><br><span class="line"></span><br><span class="line">// weight数组的大小 就是物品个数</span><br><span class="line">for(int i = 1; i &lt; weight.size(); i++) &#123; // 遍历物品</span><br><span class="line">    for(int j = 0; j &lt;= bagweight; j++) &#123; // 遍历背包容量</span><br><span class="line">    	// 这里j &lt; weight[i]就是此时的背包放不下物品i，所以背包的最大价值就是上一个物品dp[i - 1]遍历到j时的最大价值</span><br><span class="line">        if (j &lt; weight[i]) dp[i][j] = dp[i - 1][j]; </span><br><span class="line">        else dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h2><ul>
+<li><p>背包问题的子问题是什么</p>
+<ul>
+<li><p>在背包问题中，子问题可以被定义为：对于给定的物品，考虑将这些物品放入不同容量的背包中时，所能获得的最大价值。</p>
+<p>背包问题的经典形式是0-1背包问题，其中：</p>
+<ul>
+<li>给定一组物品，每个物品有自己的重量和价值。</li>
+<li>给定一个背包的容量。</li>
+<li>目标是选择一些物品放入背包中，使得放入的物品的总重量不超过背包容量，并且价值总和最大。</li>
+</ul>
+<p>基于这个定义，我们可以将背包问题划分为多个子问题：</p>
+<ul>
+<li>对于第i个物品，考虑将它放入当前背包容量下的最优解问题。</li>
+<li>针对当前物品，我们可以选择将其放入背包，或者不放入背包，以找到最优解。</li>
+<li>因此，对于每个物品i，我们可以将其放入背包产生两种情况：放入物品i和不放入物品i。</li>
+<li>这样，背包问题的子问题就是在考虑前i个物品的情况下，背包容量为j时能够获得的最大价值。</li>
+</ul>
+<p>通过解决这些子问题并保存子问题的最优解，我们可以逐步构建出原问题的最优解，最终获得背包问题的解。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i：第i个物品</span><br><span class="line">j：遍历到背包容量为j 时</span><br><span class="line">dp[i][j]：任取0~i的物品放到容量为j的背包</span><br></pre></td></tr></table></figure>
 
-<p>以下图当遍历到物品2，遍历到背包容量为5时为例</p>
-<p>此时的物品重量为3，价值为5</p>
-<p>若不装这个物品，此时背包的价值就是前一个物品（i-1）遍历到j时的最大价值为3</p>
-<p>若装下这个物品，此时背包的容量就剩下2，剩下的2肯定不能浪费了，就找前一个我们遍历过的物品（i-1）背包容量为2时的最大价值即3，把3和物品i的价值5相加就是此时背包的最大价值8</p>
-<p>8比3大，所以选择装下物品i</p>
-<img src="/2022/07/27/algorithm/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87.png" class>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建dp数组</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">goods</span> <span class="operator">=</span> weight.length;  <span class="comment">// 获取物品的数量</span></span><br><span class="line">        <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[goods][bagSize + <span class="number">1</span>]; <span class="comment">//bagSize + 1是因为背包容量j是从0开始遍历的</span></span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建dp数组</span></span><br><span class="line"><span class="type">int</span> <span class="variable">goods</span> <span class="operator">=</span> weight.length;  <span class="comment">// 获取物品的数量</span></span><br><span class="line"><span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[goods][bagSize + <span class="number">1</span>]; <span class="comment">// bagSize + 1是因为背包容量j是从0开始遍历的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化dp数组，创建数组后，其中默认的值就是0   这段代码就是初始化物品0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> weight[<span class="number">0</span>]; j &lt;= bagSize; j++) &#123;</span><br><span class="line">    dp[<span class="number">0</span>][j] = value[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 填充dp数组</span></span><br><span class="line"><span class="comment">// weight数组的大小 就是物品个数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; weight.length; i++) &#123; <span class="comment">// 遍历物品，i=1，从第二个物品开始，因为第一个物品在上面初始化了</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= bagSize; j++) &#123; <span class="comment">// 遍历背包容量</span></span><br><span class="line">        <span class="keyword">if</span> (j &lt; weight[i]) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 这里j &lt; weight[i]就是此时的背包放不下物品i</span></span><br><span class="line"><span class="comment">             * 所以背包的最大价值就是上一个物品dp[i - 1]遍历到j时的最大价值</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            dp[i][j] = dp[i-<span class="number">1</span>][j];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 当前背包的容量可以放下物品i,那么此时分两种情况：</span></span><br><span class="line"><span class="comment">             *    1、不放物品i</span></span><br><span class="line"><span class="comment">             *    2、放物品i</span></span><br><span class="line"><span class="comment">             * 比较这两种情况下，哪种背包中物品的最大价值最大</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            dp[i][j] = Math.max(dp[i-<span class="number">1</span>][j] , dp[i-<span class="number">1</span>][j-weight[i]] + value[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>为什么要从0开始，因为下面部分的代码中最后那里dp[i-1][j-weight[i]] + value[i]需要用到，即当背包容量和物品重量相等时，这时j-weight[i]&#x3D;0</p>
+<p>上面的代码背包容量j为什么要从0开始？</p>
+<p>因为后面部分的代码中最后那里dp[i-1][j-weight[i]] + value[i]需要用到，即当背包容量和物品重量相等时，这时j-weight[i]&#x3D;0</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 填充dp数组</span><br><span class="line">        for (int i = 1; i &lt; weight.length; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt;= bagSize; j++) &#123;</span><br><span class="line">                if (j &lt; weight[i]) &#123;</span><br><span class="line">                    /**</span><br><span class="line">                     * 当前背包的容量都没有当前物品i大的时候，是不放物品i的</span><br><span class="line">                     * 那么前i-1个物品能放下的最大价值就是当前情况的最大价值</span><br><span class="line">                     */</span><br><span class="line">                    dp[i][j] = dp[i-1][j];</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    /**</span><br><span class="line">                     * 当前背包的容量可以放下物品i</span><br><span class="line">                     * 那么此时分两种情况：</span><br><span class="line">                     *    1、不放物品i</span><br><span class="line">                     *    2、放物品i</span><br><span class="line">                     * 比较这两种情况下，哪种背包中物品的最大价值最大</span><br><span class="line">                     */</span><br><span class="line">                    dp[i][j] = Math.max(dp[i-1][j] , dp[i-1][j-weight[i]] + value[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<img src="/2022/07/27/algorithm/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E4%BB%A3%E7%A0%81.png" class>
+
+<hr>
+<ul>
+<li><p>递推公式为什么是max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i])</p>
+<ul>
+<li><p>以下图当遍历到物品2，遍历到背包容量为5时为例</p>
+<p>此时的物品重量为3，价值为5</p>
+<p>若不装这个物品，此时背包的价值就是前一个物品（i-1）遍历到j时的最大价值为3，也就是递推公式中的dp[i - 1][j]</p>
+<p>若装下这个物品，此时背包的容量就剩下2，剩下的2肯定不能浪费了，就找前一个我们遍历过的物品（i-1）背包容量为2时的最大价值即3，把3和物品i的价值5相加就是此时背包的最大价值8，也就是递推公式中的dp[i - 1][j - weight[i]] + value[i]</p>
+<p>两个情况作比较max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i])，8比3大，所以选择装下物品i</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2022/07/27/algorithm/%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87.png" class>
+
+<blockquote>
+<p>上图中的物品第0行可以不用，在代码中存放物品的数组下标0的位置就是存放物品1，代码中用不到物品重量和价值为0的情况，所以上图中的物品1在代码中就是物品0，物品2依次类推。但是背包重量为0的情况是需要的。</p>
+</blockquote>
+<ul>
+<li>为什么只初始化物品0的最大价值，其他的不用初始化(在Java中对于整数类型的数组，其元素默认值为0)，直接可以使用默认值0呢？<ul>
+<li>由前面递推公式的理解可知，遍历的当前物品i在当前背包j的最大价值是由它上面的数据和左上的某个数据推出的，和它左边的数据没有关系，我们只要有物品i-1的值就可以推出当前物品在当前背包的最大价值，所以除了第一个物品的值需要初始化，其他物品的值都不需要。</li>
+</ul>
+</li>
+</ul>
+<h3 id="01背包问题之滚动数组"><a href="#01背包问题之滚动数组" class="headerlink" title="01背包问题之滚动数组"></a>01背包问题之滚动数组</h3><p>在01背包问题二维数组的基础上采用倒序遍历，递归公式压缩为一维数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[j] = max(dp[j], dp[j - weight[i]] + value[i]); <span class="comment">// j：背包容量，i：物品数组下标</span></span><br></pre></td></tr></table></figure>
+
+<p>dp[j]表示：容量为j的背包，所背的物品价值可以最大为dp[j]，那么dp[0]就应该是0，因为背包容量为0所背的物品的最大价值就是0。</p>
+<p>那么dp数组除了下标0的位置，初始为0，其他下标应该初始化多少呢？</p>
+<p>也初始化为0，为什么？以下图的物品和背包为例：</p>
 
 
+<p>由递推公式可知：</p>
+<ul>
+<li>当遍历第一个物品时(下标为0)：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">6</span>] = max(dp[<span class="number">6</span>], dp[<span class="number">6</span> - weight[<span class="number">0</span>]] + value[<span class="number">0</span>]); <span class="comment">// 以j=6为例</span></span><br><span class="line">      = max(dp[<span class="number">6</span>], dp[<span class="number">6</span> - <span class="number">2</span>] + value[<span class="number">0</span>]);</span><br><span class="line">      = max(dp[<span class="number">6</span>], dp[<span class="number">4</span>] + <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
 
-<img src="/2022/07/27/algorithm/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98.png" class>
+<p>它的背包最大价值是需要本身的价值加上dp[4]，然后和dp[6]比较得到，也就是说它是受dp[4](左边的值)和dp[6]初始值的影响的，但是我们知道，在遍历第一个物品时，不管背包容量多大，在能放得下第一个物品的情况下，背包的最大价值始终都应该是第一个物品的价值，因为现在背包里只装有第一个物品，因此它不能受左边值和本身位置初始值的影响，所以我们需要把它们都初始为0。</p>
+<ul>
+<li>当遍历第二个物品时(下标为1)：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">6</span>] = max(dp[<span class="number">6</span>], dp[<span class="number">6</span> - weight[<span class="number">1</span>]] + value[<span class="number">1</span>]); <span class="comment">// 以j=6为例</span></span><br><span class="line">      = max(dp[<span class="number">6</span>], dp[<span class="number">6</span> - <span class="number">3</span>] + value[<span class="number">1</span>]);</span><br><span class="line">      = max(dp[<span class="number">6</span>], dp[<span class="number">3</span>] + <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
 
+<p>此时的dp[6]和dp[3]已经在遍历第一个物品时被赋值为第一个物品的价值，也就是说它受上面的值和左上方的值的影响，跟它左边的值没有关系，因此，也可以把它左边的值初始化为0，其他物品(行)同理。</p>
+<img src="/2022/07/27/algorithm/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E4%B9%8B%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84.png" class>
 
-
+<blockquote>
+<p>总结：背包问题之滚动数组的所有初始值都可以初始化为0。</p>
+</blockquote>
+<p>这也是为什么背包问题可以倒序的原因，因为它不受左边数据的影响。</p>
 
         </div>
 
